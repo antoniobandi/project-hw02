@@ -5,19 +5,34 @@ EXESRC=$(wildcard exesrc/*c)
 EXEOBJ=$(patsubst %c, %o, $(EXESRC))
 
 CFLAGS=-I $(INC)
-EXE=exe/app.elf
+EXE01=exe/test01.elf
+EXE02=exe/test02.elf
+EXE03=exe/test03.elf
+EXE04=exe/test04.elf
+EXE05=exe/test05.elf
+EXE06=exe/test06.elf
+EXEDFT=exe/test_dft.elf
+EXEIDFT=exe/test_idft.elf
 
 .SECONDARY:
 
-all: $(EXE)
+run: all
+	./$(EXE01) 
+	./$(EXE02) 
+	./$(EXE03)  
+	./$(EXE04) 
+	./$(EXE05) 
+	./$(EXE06) 
+	./$(EXEDFT) 
+	./$(EXEIDFT)
 
-%.elf: $(OBJ) $(EXEOBJ)
-	gcc $(OBJ) $(EXEOBJ) -o $@ -lm
+all: $(EXE01) $(EXE02) $(EXE03) $(EXE04) $(EXE05) $(EXE06) $(EXEDFT) $(EXEIDFT)
+
+exe/%.elf: exesrc/%.o $(EXEOBJ) $(OBJ)
+	gcc $< $(OBJ) -o $@ -lm
 
 %.o: %.c
-	gcc -c $< -I inc/ -o $@
+	gcc -c $< $(CFLAGS) -o $@
 
 clean:
-	rm -f $(OBJ) $(EXE) $(EXEOBJ)
-
-
+	rm -f $(OBJ) $(EXEOBJ) $(EXE01) $(EXE02) $(EXE03) $(EXE04) $(EXE05) $(EXE06) $(EXEDFT) $(EXEIDFT) dft.txt
