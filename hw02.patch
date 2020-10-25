@@ -1,0 +1,33 @@
+diff --git a/apps/05_GPIO_InterruptLatency_App/main.c b/apps/05_GPIO_InterruptLatency_App/main.c
+index c2a94c4..b14085f 100644
+--- a/apps/05_GPIO_InterruptLatency_App/main.c
++++ b/apps/05_GPIO_InterruptLatency_App/main.c
+@@ -17,7 +17,7 @@
+ #include <exti.h>
+ #include <clocksource/gt.h>
+ #include <stdio.h>
+-#include <stdbool.h
++#include <stdbool.h>
+ #include <memory.h>
+ // pin numbers correspond to ODROID-XU3 header
+ #define GPIO_PIN_HEARTBEAT 24
+@@ -104,4 +104,4 @@ int main()
+     while(1)
+     {
+     }
+-}
+\ No newline at end of file
++}
+diff --git a/include/api/gpio.h b/include/api/gpio.h
+index f7b038b..9c962ee 100644
+--- a/include/api/gpio.h
++++ b/include/api/gpio.h
+@@ -34,7 +34,7 @@ gpio_err_t gpio_api_init(gpio_driver_t *drv);
+ void gpio_init(int pin, gpio_mode_t mode);
+ void gpio_set_value(int pin, int direction);
+ void gpio_set_direction(int pin, gpio_mode_t mode);
+-int gpio_get_value(int pin)
++int gpio_get_value(int pin);
+ 
+ 
+ #endif /*----------  End of header file gpio.h  ----------*/
