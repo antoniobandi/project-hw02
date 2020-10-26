@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 int read_word(int fd) {
-	char buffer[100];
+	char buffer[16];
 	read(fd, buffer, 4);
 	int word = atoi(buffer);
 	return word;
@@ -15,7 +15,7 @@ short read_half(int fd) {
 	return half_word;
 }
 void write_word(int fd, int word) {
-	char buffer[100];
+	char buffer[16];
 	sprintf(buffer, "%d", word);
 	write(fd, buffer, 4);
 }

@@ -12,7 +12,7 @@
 #define PI 3.14159265358979323846264338327950288419716939937510582097494459230781640628
 
 int main(void) {
-	int fd = open("dft.txt",O_CREAT | O_RDWR);
+	int fd = open("dft.txt",O_CREAT | O_RDWR | O_APPEND);
 	cmplx_t signal[N] = {0};
 	cmplx_t dft[N] = {0};
 	cmplx_t* ps = &signal[0];
@@ -27,17 +27,15 @@ int main(void) {
 	cmplx_dft(ps, pd, N);
 	
 	for(i = 0; i < N; i++) {
-		//upis amplitude
-		float vrijednost = cmplx_mag(dft[i]);
+		//upis realnog dijela
+		float vrijednost = dft[i][0];
 		void *a = (void *) &vrijednost;
 		int vrijednost_ieee = *((int *) a);
-		int vrijednost_cijeli_broj = (int) vrijednost;
 		write_word(fd, vrijednost_ieee);
-		//upis faze
-		vrijednost = cmplx_phs(dft[i]);
+		//upis imaginarnog dijela
+		vrijednost = dft[i][1];
 		a = (void *) &vrijednost;
 		vrijednost_ieee = *((int *) a);
-		vrijednost_cijeli_broj = (int) vrijednost;
 		write_word(fd, vrijednost_ieee);
 	}
 	
