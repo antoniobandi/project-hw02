@@ -11,6 +11,7 @@ EXE03=exe/test03.elf
 EXE04=exe/test04.elf
 EXE05=exe/test05.elf
 EXE06=exe/test06.elf
+EXE07=exe/test07.elf
 EXEDFT=exe/test_dft.elf
 EXEIDFT=exe/test_idft.elf
 
@@ -22,11 +23,12 @@ run: all
 	./$(EXE03)  
 	./$(EXE04) 
 	./$(EXE05) 
-	./$(EXE06) 
+	./$(EXE06)
+	./$(EXE07) 
 	./$(EXEDFT) 
 	./$(EXEIDFT)
 
-all: $(EXE01) $(EXE02) $(EXE03) $(EXE04) $(EXE05) $(EXE06) $(EXEDFT) $(EXEIDFT)
+all: $(EXE01) $(EXE02) $(EXE03) $(EXE04) $(EXE05) $(EXE06) $(EXE07) $(EXEDFT) $(EXEIDFT)
 
 exe/%.elf: exesrc/%.o $(EXEOBJ) $(OBJ)
 	gcc $< $(OBJ) -o $@ -lm
@@ -35,4 +37,4 @@ exe/%.elf: exesrc/%.o $(EXEOBJ) $(OBJ)
 	gcc -c $< $(CFLAGS) -o $@
 
 clean:
-	rm -f $(OBJ) $(EXEOBJ) $(EXE01) $(EXE02) $(EXE03) $(EXE04) $(EXE05) $(EXE06) $(EXEDFT) $(EXEIDFT) dft.txt
+	rm -f $(OBJ) $(EXEOBJ) $(EXE01) $(EXE02) $(EXE03) $(EXE04) $(EXE05) $(EXE06) $(EXE07) $(EXEDFT) $(EXEIDFT) dft.txt test07.txt
